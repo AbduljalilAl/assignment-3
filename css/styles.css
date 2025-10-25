@@ -1,0 +1,463 @@
+/* =================== Base & Resets =================== */
+h2 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: #333;
+}
+
+/* Reset some default browser styles */
+header,
+header h1,
+header h2,
+header p,
+header ul {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  transition: background-color 0.6s ease, color 0.6s ease; /* smooth theme change */
+}
+
+ul {
+  list-style: none; /* remove bullets */
+}
+
+/* Sections smoothly change colors (light/dark) */
+.section {
+  transition: background-color 0.6s ease, color 0.6s ease;
+}
+
+/* =================== Navbar =================== */
+.navbar {
+  display: flex;
+  justify-content: space-between; /* logo left, links right */
+  align-items: center;
+  background-color: #333;
+  padding: 1rem 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: white;
+}
+
+.nav-links {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  transition: color 0.7s; /* smooth hover effect */
+}
+
+.nav-links a:hover {
+  text-decoration: underline;
+  color: yellow;
+}
+
+/* =================== About =================== */
+#about {
+  padding: 4rem 2rem;
+  background-color: #E5BEB5;
+  text-align: center;
+}
+
+.about-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+}
+
+.profile-img {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #333;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.about-text {
+  max-width: 500px;
+  text-align: left;
+}
+
+.about-text p {
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #444;
+}
+
+.about-text em {
+  color: #007BFF;
+  font-weight: bold;
+}
+
+/* =================== Projects =================== */
+#projects {
+  padding: 4rem 2rem;
+  background-color: #EEE6CA;
+  text-align: center;
+}
+
+.projects-container {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.project-card {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  overflow: hidden;
+  flex: 1 1 300px;
+  max-width: 450px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+/* Image hover animation */
+.project-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  transition: transform 0.4s ease, filter 0.4s ease; /* added */
+  will-change: transform;
+}
+
+.project-card:hover img {
+  transform: scale(1.05);
+  filter: brightness(1.08);
+}
+
+.project-card h3 {
+  font-size: 1.3rem;
+  margin: 1rem 0 0.5rem;
+  color: #222;
+}
+
+.project-card p {
+  font-size: 1rem;
+  color: #555;
+  padding: 0 1rem 1.5rem;
+}
+
+/* =================== Contact =================== */
+#contact {
+  padding: 4rem 2rem;
+  background-color: #F5FAE1;
+  text-align: center;
+}
+
+.contact-form {
+  max-width: 600px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  text-align: left;
+}
+
+.contact-form label {
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 0.3rem;
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+input:focus,
+textarea:focus {
+  border-color: #007BFF;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+  outline: none;
+}
+
+.contact-form button {
+  background-color: #007BFF;
+  color: white;
+  font-size: 1rem;
+  padding: 0.8rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.contact-form button:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+
+/* =================== Theme Toggle =================== */
+#theme-toggle {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.2rem;
+  cursor: pointer;
+  max-width: 170px;
+  transition: transform 0.2s;
+}
+
+#theme-toggle:hover {
+  transform: scale(1.2);
+  color: yellow;
+}
+
+/* =================== Dark Mode =================== */
+body.dark-mode {
+  background-color: #222;
+  color: #f4f4f4;
+}
+
+body.dark-mode .navbar {
+  background-color: #111;
+}
+
+body.dark-mode a {
+  color: #00c6ff;
+}
+
+body.dark-mode #about,
+body.dark-mode #projects,
+body.dark-mode #contact {
+  background-color: #333;
+  color: #f4f4f4;
+}
+
+body.dark-mode .project-card {
+  background-color: #444;
+  color: #f4f4f4;
+}
+
+body.dark-mode p,
+body.dark-mode label {
+  color: white;
+}
+
+body.dark-mode h2,
+body.dark-mode h3 {
+  color: #fff;
+}
+
+body.dark-mode input,
+body.dark-mode textarea {
+  background-color: #000;
+  color: #fff;
+  border: 1px solid #555;
+}
+
+body.dark-mode input::placeholder,
+body.dark-mode textarea::placeholder {
+  color: white;
+}
+
+/* =================== Utilities =================== */
+.hidden { display: none !important; }
+
+.project-controls {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin: 1rem auto;
+  max-width: 800px;
+  flex-wrap: wrap;
+}
+
+#project-search,
+#project-filter {
+  padding: 0.6rem 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.card {
+  max-width: 700px;
+  margin: 0.5rem auto;
+  padding: 1rem 1.2rem;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.secondary {
+  margin-top: 0.75rem;
+  padding: 0.6rem 0.9rem;
+  border-radius: 6px;
+  border: 1px solid #aaa;
+  background: #f8f8f8;
+  cursor: pointer;
+}
+
+body.dark-mode .card { background: #333; color: #f3f3f3; }
+
+/* Contact form feedback messages */
+.form-msg {
+  margin-top: .5rem;
+  min-height: 1.25rem;
+  opacity: 0;
+  transform: translateY(-4px);
+  transition: opacity .3s ease, transform .3s ease;
+}
+.form-msg.show { opacity: 1; transform: translateY(0); }
+.form-msg.error { color: #b00020; }
+.form-msg.success { color: #087f23; }
+
+/* =================== Animations =================== */
+.fade-in {
+  opacity: 0;
+  transform: translateY(8px);
+  animation: fadeInUp .6s ease forwards;
+}
+@keyframes fadeInUp {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Respect users who prefer reduced motion:
+   disable only heavy entrance animations, keep gentle color/hover transitions */
+@media (prefers-reduced-motion: reduce) {
+  .fade-in { animation: none !important; }
+}
+/* ===== Fun Fact (Random Dev Tip) ===== */
+#fun-fact {
+  padding: 4rem 2rem;
+  background-color: #EAF3FF;         /* distinct light background */
+  text-align: center;
+  transition: background-color 0.6s ease, color 0.6s ease;
+}
+
+/* Dark mode override */
+body.dark-mode #fun-fact {
+  background-color: #333;
+  color: #f4f4f4;
+}
+
+/* Fact box refinements (extends your .card) */
+#fact-box.card {
+  max-width: 700px;
+  margin-top: 0.75rem;
+  min-height: 64px;                  /* avoids jump while “Loading…” */
+  line-height: 1.6;
+  font-size: 1.05rem;
+  transition: background-color 0.6s ease, color 0.6s ease, border-color 0.6s ease, box-shadow 0.3s ease;
+}
+
+/* Retry button tweaks (extends your .secondary) */
+#fact-retry.secondary {
+  margin-top: 0.75rem;
+  transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.2s ease;
+}
+#fact-retry.secondary:hover { transform: translateY(-1px); }
+#fact-retry.secondary:disabled { opacity: 0.6; cursor: not-allowed; }
+#fact-retry.secondary:focus-visible { outline: 3px solid #007BFF; outline-offset: 2px; }
+/* ===== Modern style for the Dev Tip button (enhances .secondary) ===== */
+#fact-retry {
+  --btn-from: #6a92ff;      /* gradient start */
+  --btn-to:   #3b6bff;      /* gradient end */
+  --btn-border: #2f54d3;
+  --btn-ring: rgba(59,107,255,0.35);
+
+  position: relative;
+  appearance: none;
+  background: linear-gradient(135deg, var(--btn-from), var(--btn-to));
+  color: #fff;
+  border: 1px solid var(--btn-border);
+  border-radius: 12px;
+  padding: 0.7rem 1rem;
+  font-weight: 600;
+  letter-spacing: .02em;
+  box-shadow:
+    0 6px 18px rgba(59,107,255,0.25),
+    inset 0 0 0 1px rgba(255,255,255,0.12);
+  transform: translateY(0) scale(1);
+  transition:
+    transform .2s ease,
+    box-shadow .2s ease,
+    filter .3s ease,
+    background .3s ease,
+    border-color .3s ease;
+  -webkit-tap-highlight-color: transparent;
+  overflow: hidden;
+}
+
+/* Sheen sweep on hover */
+#fact-retry::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right,
+    transparent 0%,
+    rgba(255,255,255,.25) 50%,
+    transparent 100%);
+  transform: translateX(-120%);
+  transition: transform .6s ease;
+  pointer-events: none;
+}
+
+#fact-retry:hover {
+  transform: translateY(-1px) scale(1.01);
+  box-shadow:
+    0 10px 26px rgba(59,107,255,0.32),
+    inset 0 0 0 1px rgba(255,255,255,0.15);
+  filter: brightness(1.02);
+}
+#fact-retry:hover::before { transform: translateX(120%); }
+
+#fact-retry:active {
+  transform: translateY(0) scale(0.995);
+  box-shadow:
+    0 4px 12px rgba(59,107,255,0.22),
+    inset 0 0 0 1px rgba(255,255,255,0.10);
+}
+
+#fact-retry:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 4px var(--btn-ring),
+    0 8px 22px rgba(59,107,255,0.28),
+    inset 0 0 0 1px rgba(255,255,255,0.15);
+}
+
+/* Dark mode palette */
+body.dark-mode #fact-retry {
+  --btn-from: #5a7ae6;
+  --btn-to:   #3057e6;
+  --btn-border: #2748bf;
+  --btn-ring: rgba(80,120,255,0.45);
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  #fact-retry, #fact-retry::before { transition: none !important; }
+}

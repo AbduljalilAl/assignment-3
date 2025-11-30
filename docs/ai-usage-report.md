@@ -1,83 +1,44 @@
-# AI Usage Report – Assignment 2 (Interactive Features)
+# AI Usage Report - Assignment 3
 
 **Student:** Abbduljalil  
-**Repo:** assignment-2  
-**Date:** 25 oct
+**Repo:** assignment-3  
+**Date:** 25 Oct
 
-> This report documents how I used AI tools during development. For each use, I include the tool, my prompt, a summary of the AI output, the edits I made, and what I learned.
-
----
-
-I use AI to write the report 
-
-## 1) Persist Dark/Light Theme with localStorage
-- **Tool:** ChatGPT (code suggestion)
-- **My prompt (summary):** “Add a dark mode toggle that remembers the user’s preference using localStorage and updates the button text.”
-- **AI output (summary):** Provided a `DOMContentLoaded` handler, reads `localStorage.theme`, toggles `body.dark-mode`, and updates button text.
-- **My edits:** 
-  - Added OS fallback using `prefers-color-scheme: dark`.
-  - Ensured button text syncs on first load.
-- **Understanding:** I can explain how localStorage works and why we check `matchMedia` if no saved theme exists.
-- **Ethics note:** I verified and tested AI code; I didn’t submit unmodified output.
+I used AI (ChatGPT) to speed up planning and coding. Below is a concise record of where AI helped; I reviewed and edited everything to fit my project and to ensure I understand it.
 
 ---
 
-## 2) Personalized Greeting (Time of Day)
-- **Tool:** ChatGPT (snippet)
-- **Prompt:** “Generate a greeting message based on current hour.”
-- **AI output:** A small function that sets text to morning/afternoon/evening.
-- **My edits:** Wrote clear copy and attached it to `#greeting` with `aria-live="polite"`.
-- **Learning:** DOM selection and time-based logic basics.
+## Planning and Copy Fixes
+- **Prompt:** Outline Assignment 3 upgrades and fix corrupted UI text.
+- **AI Output:** Suggested adding GitHub feed, saved filters, timer, remembered name, and cleaner wording.
+- **My Edits:** Chose the exact behaviors/state keys and rewrote the copy.
+- **Learning:** Up-front planning avoided rework.
 
----
+## GitHub API Section
+- **Prompt:** Fetch latest repos with loading/error/empty states.
+- **AI Output:** Fetch pattern for `users/{user}/repos` with try/catch.
+- **My Edits:** Added `per_page=5`, `sort=updated`, DOM-safe rendering, saved username, and status cards.
+- **Learning:** Safer API UI states and avoiding innerHTML for external data.
 
-## 3) Projects Live Search + Filter + Empty State
-- **Tool:** ChatGPT (scaffold)
-- **Prompt:** “Implement search input and filter select that hide/show `.project-card` elements using data attributes.”
-- **AI output:** Provided filter function reading `data-tags` and text content.
-- **My edits:** Added empty state (`#project-empty`) and ensured robust null checks.
-- **Learning:** Efficient DOM filtering and empty state UX.
+## Projects Sorting + Saved State
+- **Prompt:** Sort `.project-card` by data attributes and persist filters.
+- **AI Output:** Array sort and localStorage example.
+- **My Edits:** Combined sort+filter, empty-state toggle, default hydration, gentle parsing.
+- **Learning:** Reliable DOM reordering and simple state hydration.
 
----
+## Timer + Greeting
+- **Prompt:** Simple mm:ss timer and greeting that uses a saved name.
+- **AI Output:** Interval timer and template literal greeting.
+- **My Edits:** Added aria-live, padded seconds, and integration with the remember-name block.
+- **Learning:** Small UX details improve clarity.
 
-## 4) “Random Dev Tip” API Widget (AdviceSlip)
-- **Tool:** ChatGPT (pattern)
-- **Prompt:** “Fetch from a public API, show loading text, handle errors, and add a retry button.”
-- **AI output:** `fetch("https://api.adviceslip.com/advice")` with try/catch and retry.
-- **My edits:** Added `cache: "no-store"`, better error copy, and optional loading spinner on the button.
-- **Learning:** Basic fetch lifecycle and user feedback patterns.
-
----
-
-## 5) Contact Form Validation + Animated Feedback
-- **Tool:** ChatGPT (starter)
-- **Prompt:** “Validate name/email/message on submit and show inline messages.”
-- **AI output:** Regex-based email validation and message area update.
-- **My edits:** Added accessibility roles (`role="alert"`, `aria-live="assertive"`), success reset, and animation classes.
-- **Learning:** Client-side validation and accessible alerts.
-
----
-
-## 6) Smooth Transitions & Reduced Motion Accessibility
-- **Tool:** ChatGPT (review)
-- **Prompt:** “Why do my color transitions not animate? How to fix with `.section` and keep accessibility?”
-- **AI output:** Add `transition` to `.section` and `body`, narrow `prefers-reduced-motion` to only disable `.fade-in`.
-- **My edits:** Kept hover/colour transitions, disabled only heavy animations for reduced motion users.
-- **Learning:** Transitions aren’t inherited; animate on the element where the change occurs.
-
----
-
-## 7) Modern Button Styling (Retry Button)
-- **Tool:** ChatGPT (design help)
-- **Prompt:** “Make `#fact-retry` look modern with gradient, elevation, focus ring, and hover sheen—no HTML changes.”
-- **AI output:** Gradient, box-shadow, pseudo-element sheen, focus-visible styles.
-- **My edits:** Tuned colors for dark mode and added optional spinner state via `.is-loading`.
-- **Learning:** Balancing aesthetics with accessibility and reduced motion.
-
----
+## Styling Pass
+- **Prompt:** Modern card/list styling and button polish.
+- **AI Output:** Gradient/button ideas and spacing hints.
+- **My Edits:** Fit into the existing palette, added dark-mode variables, kept reduced-motion safety.
+- **Learning:** How to adapt design ideas without breaking accessibility.
 
 ## Reflection
-- **Benefits:** Faster iteration, exposure to best practices, and reminders about accessibility.
-- **Challenges:** Ensuring no over-reliance; adapting generic snippets to my exact markup.
-- **What I learned:** DOM patterns, accessible feedback, CSS transitions, and state handling.
-
+- **Benefits:** Faster iteration on fetch/state patterns and copy cleanup.
+- **Challenges:** Keeping everything ASCII and removing prior encoding glitches.
+- **Understanding:** I can explain and modify the AI-assisted code paths (GitHub fetch, sorting/state, timer/greeting, styling) and why each change was made.

@@ -1,141 +1,56 @@
-Assignment 2 – Interactive Features (Portfolio)
+# Assignment 3 - Advanced Functionality (Portfolio)
 
-A lightweight, accessible personal portfolio enhanced with interactive features: saved dark/light theme, time-based greeting, live project search & filter with empty states, an API-powered “Random Dev Tip,” and a validated contact form — all with smooth transitions and reduced-motion support.
+A personal portfolio with advanced interactivity: persisted theme, remembered visitor name, session timer, live project search/filter/sort with saved state, GitHub API feed, AdviceSlip API tips, and validated contact form. Performance tweaks include lazy-loaded images and fixed dimensions to avoid layout shifts.
 
-Student: Abbduljalil
-Repo: assignment-2
+**Student:** Abbduljalil  
+**Repo:** assignment-3 (local working copy)
 
-✨ Features
+## Features
+- Theme persistence: Dark/Light mode saved in `localStorage`, respects system preference, accessible toggle copy.
+- Personalized greeting: Time-of-day greeting that uses the remembered visitor name.
+- Remember my name: Input + save button stores a visitor name locally and updates the greeting.
+- Session timer: Shows how long the visitor has been on the page.
+- Projects search/filter/sort: Live text search, tag filter, and sort (newest/oldest/title). State (search/filter/sort) is saved locally. Empty state message when nothing matches.
+- GitHub repos API: Fetches the latest updated repositories for a username with loading, error, and empty handling. Username is stored locally.
+- Random Dev Tip API: AdviceSlip fetch with loading, retry, and error fallback.
+- Contact form validation: Name/email/message checks with inline, animated feedback; no backend required.
+- Performance: Lazy-loaded images with explicit width/height to reduce layout shifts; trimmed CSS/JS and reduced repeated work.
 
-Theme persistence: Dark/Light mode saved in localStorage and applied on load.
+## Project Structure
+```
+assignment-3/
++-- index.html
++-- css/
+�   +-- styles.css
++-- js/
+�   +-- script.js
++-- assets/
+�   +-- images/
++-- docs/
+�   +-- ai-usage-report.md
+�   +-- technical-documentation.md
++-- .gitignore
+```
 
-Personalized greeting: Time-of-day message in the About section.
+## Run Locally
+1) Clone the repository.  
+2) Open `index.html` in a browser (or use any simple static server).  
+   - VS Code: use the "Live Server" extension and open `index.html`.  
+   - Or run a simple server: `python -m http.server 8000` and open `http://localhost:8000`.
+3) No build step needed (plain HTML/CSS/JS).
 
-Projects search & filter: Real-time text search + tag filter (data-tags), with an empty state.
+## Usage
+- Theme toggle: Click "Dark mode"/"Light mode" in the navbar; preference persists.
+- Greeting + name: Enter a name in "Remember your name" and Save; greeting updates and the value persists.
+- Timer: "Time on site" updates every second.
+- Projects: Type to search, choose a tag, and sort via the dropdown. State is saved between visits. If no projects match, an empty state appears.
+- GitHub feed: Enter a GitHub username and click "Load repos" to fetch the latest 5 updated repos. Saved locally for convenience. Shows loading, errors, or empty results.
+- Dev Tip: Click "Try another" to fetch a new tip; shows loading and error fallback.
+- Contact form: Validates name/email/message; shows inline success/error messages (simulated submit).
 
-Random Dev Tip (API): Fetches advice from AdviceSlip, shows loading, error fallback, and retry.
+## AI Usage (summary)
+- ChatGPT was used for brainstorming feature ideas, copy clean-up, and code scaffolding for sorting/state, GitHub fetch patterns, and UX wording. All code was reviewed, adapted, and tested locally. Details are logged in `docs/ai-usage-report.md` (tool, prompts, outputs, edits, and learnings).
 
-Contact form validation: Inline feedback (name/email/message), accessible alerts, animated messages.
-
-Smooth UX: Gentle color/hover transitions, entrance fades (disabled for reduced-motion users).
-
-Mobile-friendly: Responsive layout with flexible cards and wrapping controls.
-
-🗂️ Project Structure
-assignment-2/
-├── index.html
-├── css/
-│   └── styles.css
-├── js/
-│   └── script.js
-├── assets/
-│   └── images/           # profile + project images (add screenshots if you like)
-└── docs/
-    ├── ai-usage-report.md
-    └── technical-documentation.md
-
-🚀 Getting Started
-Run locally
-
-Clone the repository.
-
-Open index.html directly in your browser or use a local server:
-
-VS Code → “Live Server” extension → Open with Live Server
-
-Or run any simple static server.
-
-No build tools required — plain HTML/CSS/JS.
-
-🛠️ How to Use
-
-Theme toggle: Click Dark mode🌙 / Light mode☀️ in the navbar. Preference persists across reloads.
-
-Greeting: See a “Good morning/afternoon/evening” message in About.
-
-Search & filter: In Projects, type in the search bar or choose a tag from the dropdown.
-
-If nothing matches, it shows “No projects found.”
-
-Random Dev Tip: In Random Dev Tip, click Try another to fetch a new tip.
-
-Shows Loading…, disables the button with a spinner (if enabled), and handles errors gracefully.
-
-Contact form: Fill in Name, Email, Message → Submit.
-
-Inline errors appear for missing/invalid fields.
-
-On success, the form resets and a success message appears.
-
-🧩 Key Implementation Details
-
-Storage: Theme saved under localStorage["theme"] ("dark"/"light"). If absent, respects OS prefers-color-scheme.
-
-Filtering: Each .project-card has data-tags (e.g., web, testing). Text search checks the card’s text content.
-
-API: GET https://api.adviceslip.com/advice with { cache: "no-store" } to avoid stale results.
-
-Loading/Error states: “Loading…” text; friendly error with a retry option.
-
-Accessibility: aria-live="polite" (greeting, tip box), role="alert" & aria-live="assertive" for form messages, strong :focus-visible styles, reduced motion support.
-
-🧪 Compatibility & Performance
-
-Tested on modern browsers (Chrome, Edge, Firefox).
-
-Animations use transform/opacity for smoothness.
-
-Reduced motion users get minimal movement (color/hover kept gentle).
-
-📄 Documentation
-
-AI Usage Report: docs/ai-usage-report.md
-Details of prompts, outputs, edits, and learning.
-
-Technical Documentation: docs/technical-documentation.md
-How features work (data flow, validation, API behavior, accessibility).
-
-🌐 Deployment (GitHub Pages)
-
-Push to GitHub.
-
-Repo Settings → Pages.
-
-Source: main branch → / (root) → Save.
-
-Use the URL shown (add it to the top of this README).
-
-(Netlify/Vercel also work: drag-and-drop the folder or connect the repo.)
-
-✅ Assignment Checklist
-
- Public repo with clear structure
-
- Dynamic content (greeting, search/filter)
-
- Data handling (localStorage + public API)
-
- Animations & transitions (theme/hover/fade)
-
- Error handling & user feedback (loading, retry, empty state, form validation)
-
- AI enhancement + documented usage
-
- Updated README + technical docs
-
-🔮 Future Ideas
-
-Tag chips with multi-select filters.
-
-Load projects from a JSON file or API.
-
-Real form submission via a serverless endpoint.
-
-Unit tests for filtering and validation.
-
-🙌 Credits
-
-Advice API: AdviceSlip
-.
-
-Everything else: plain HTML/CSS/JS authored and adapted by Abbduljalil.
+## Deployment
+- GitHub Pages: push to GitHub, then enable Pages on the repository (root).  
+- Netlify/Vercel: deploy as a static site (no build step required).

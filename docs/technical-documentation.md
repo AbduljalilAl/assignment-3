@@ -1,77 +1,84 @@
-# Technical Documentation – Assignment 2
+# Technical Documentation - Assignment 3
 
 ## Overview
-A personal portfolio site enhanced with interactive features: theme persistence, greeting, project search/filter, an API-powered “Dev Tip,” and accessible form validation. Smooth transitions and reduced-motion support improve UX.
+Personal portfolio with advanced interactivity: persisted theme, remembered visitor name, session timer, project search/filter/sort with saved state, GitHub API feed, AdviceSlip tip fetch, and validated contact form. Performance improvements include lazy images and defined dimensions to reduce layout shift.
 
 ## Stack
-- **HTML5 / CSS3 / JavaScript (ES6)**
-- No framework, no build step (static site)
+- HTML5 / CSS3 / JavaScript (ES6)
+- Static site (no build tool or framework)
 
 ## Structure
-assignment-2/
-├── index.html
-├── css/
-│ └── styles.css
-├── js/
-│ └── script.js
-├── assets/
-│ └── images/
-└── docs/
-├── ai-usage-report.md
-└── technical-documentation.md 
-
+```
+assignment-3/
++-- index.html
++-- css/styles.css
++-- js/script.js
++-- assets/images/
++-- docs/
+    +-- ai-usage-report.md
+    +-- technical-documentation.md
+```
 
 ## Key UI Elements
-- **Theme toggle:** `#theme-toggle` toggles `body.dark-mode` and persists preference.
-- **Greeting:** `#greeting` shows time-based message.
-- **Projects:** `.project-card` with `data-tags` for filtering.
-- **Controls:** `#project-search`, `#project-filter`, empty state `#project-empty`.
-- **Dev Tip:** `#fun-fact` section with `#fact-box` and `#fact-retry`.
-- **Contact form:** `.contact-form` with inputs `#name`, `#email`, `#message` and feedback `#form-msg`.
+- `#theme-toggle`: toggles `body.dark-mode`, persists theme.
+- `#greeting`: time-of-day greeting, includes remembered visitor name.
+- `#remember-name`, `#remember-save`, `#remembered-name`: store and display visitor name locally.
+- `#session-timer`: shows time on site.
+- Projects: `.project-card` with `data-tags`, `data-date`, `data-title`; controls `#project-search`, `#project-filter`, `#project-sort`; empty state `#project-empty`.
+- GitHub feed: `#github-form`, `#github-username`, `#github-status`, `#github-repos`.
+- Dev Tip: `#fact-box`, `#fact-retry` (AdviceSlip API).
+- Contact: `.contact-form` with inputs `#name`, `#email`, `#message`, feedback `#form-msg`.
 
-## Interactive Features – How They Work
+## Interactive Features - How They Work
 
-### 1) Theme Persistence
-- **Storage key:** `theme` with values `"dark"` or `"light"`.
-- **Init:** On `DOMContentLoaded`, apply saved theme; if none, fall back to `prefers-color-scheme: dark`.
-- **Toggle:** Clicking the button toggles the class and updates localStorage and button text.
+### Theme Persistence
+- Storage key: `theme` (`dark` | `light`).
+- Init: applies saved theme; if none, respects `prefers-color-scheme: dark`.
+- Toggle updates class and localStorage; button text reflects current mode.
 
-### 2) Greeting
-- **Logic:** `new Date().getHours()` → morning/afternoon/evening copy.
-- **Accessibility:** `aria-live="polite"` on the greeting text.
+### Greeting + Remembered Name
+- Greeting chooses morning/afternoon/evening via `Date.getHours()`.
+- Name is stored under `remembered-name`; saving updates greeting and a status line.
 
-### 3) Project Search & Filter
-- **Search:** Case-insensitive text match on `.project-card` textContent.
-- **Filter:** `data-tags` (e.g., `web`, `testing`); select “All” shows all.
-- **Empty state:** If no visible cards, show `#project-empty`.
+### Session Timer
+- On page load, start time is captured; a 1s interval updates `Time on site: m:ss`.
 
-### 4) Random Dev Tip (API)
-- **Endpoint:** `GET https://api.adviceslip.com/advice`
-- **Cache:** `fetch` with `{ cache: "no-store" }`.
-- **States:** 
-  - Loading → “Loading…”
-  - Success → display `data.slip.advice`
-  - Error → friendly fallback + retry button
-- **Optional UX:** Button spinner via `.is-loading` class (CSS `::after` spinner).
+### Projects: Search, Filter, Sort, Persisted State
+- Inputs: text search, tag filter, sort (latest/oldest/title).
+- Sorting uses `data-date` (parsed) or `data-title`; DOM nodes are re-appended in sorted order.
+- Filtering matches text content and `data-tags`.
+- Empty state toggles when no visible cards.
+- State (search/filter/sort) is stored in `localStorage` under `project-state` and re-applied on load.
 
-### 5) Contact Form Validation
-- **Validation:**
-  - Name: required (non-empty)
-  - Email: required + regex `^[^\s@]+@[^\s@]+\.[^\s@]+$`
-  - Message: required
-- **Feedback:** `#form-msg` shows error/success with `.form-msg.show` animation.
-- **Submission:** Simulated (no backend); success clears the form.
+### GitHub API Integration
+- Endpoint: `GET https://api.github.com/users/{username}/repos?sort=updated&per_page=5` with `Accept: application/vnd.github+json`.
+- Username stored locally under `github-username` and prefilled on load.
+- States: waiting, loading, success (renders list), error, empty.
+- Renders repo name/link, description, language, and last updated date.
 
-## Styling & Animation
+### Random Dev Tip (AdviceSlip)
+- Endpoint: `GET https://api.adviceslip.com/advice` with `{ cache: "no-store" }`.
+- States: loading, success (`slip.advice`), error fallback with retry button.
+- Retry button is disabled while fetching.
 
-### Color Transitions
-- **Why:** Section backgrounds change in dark mode.
-- **Rules:** `body` and `.section` have `transition: background-color, color` to avoid a hard jump.
+### Contact Form Validation
+- Validates name non-empty, email regex `^[^\s@]+@[^\s@]+\.[^\s@]+$`, and message non-empty.
+- Feedback via `#form-msg` with animated classes; simulated success clears the form.
 
-### Image Hover
-- `.project-card img` transitions `transform` and `filter` on hover for a subtle zoom/brighten.
+## Styling & Performance
+- Lazy-loaded images (`loading="lazy"`, `decoding="async"`) with explicit `width/height` to prevent layout shifts.
+- Theme colors defined via CSS variables for light/dark modes.
+- Smooth transitions on background/color; hover states use transform/opacity.
+- Reduced-motion support disables heavy animations.
+- GitHub/feed cards share the card style and reuse utility classes.
 
-### Reduced Motion
-- **Policy:** Keep gentle hover/colour transitions; disable heavy entrance animation:
-  ```css
-  @media (prefers-reduced-motion: reduce) { .fade-in { animation: none !important; } }
+## Accessibility
+- `aria-live` on greeting, timer, fact box, and form message.
+- `role="status"` on timer and empty states; `role="alert"` on form feedback.
+- Focus-visible states maintained for interactive elements.
+
+## Data/State Keys
+- `theme`: "dark" | "light"
+- `remembered-name`: visitor name string
+- `project-state`: JSON `{ search, filter, sort }`
+- `github-username`: last used username

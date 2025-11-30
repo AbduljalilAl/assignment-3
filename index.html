@@ -15,80 +15,110 @@
         <li><a href="#about">About</a></li>
         <li><a href="#projects">Projects</a></li>
         <li><a href="#contact">Contact</a></li>
-        <li><button id="theme-toggle">Dark mode🌙</button></li>
+        <li><button id="theme-toggle">Dark mode</button></li>
       </ul>
     </nav>
   </header>
 
-  <!-- About Section -->
-  <section id="about" class="section">
-    <h2>About Me</h2>
-    <p id="greeting" aria-live="polite" class="fade-in"></p>
-    <div class="about-container">
-      <img src="assets/images/profile.png" alt="Profile Image" class="profile-img">
-      <div class="about-text">
-        <p>Hello! My name is <strong>Abbduljalil</strong>. I am passionate about web development and AI integration. This portfolio showcases my work and growth as a developer.</p>
-        <p><em>"Dream big and accomplish."</em></p>
+  <main>
+    <!-- About Section -->
+    <section id="about" class="section">
+      <h2>About Me</h2>
+      <p id="greeting" aria-live="polite" class="fade-in"></p>
+      <div id="session-timer" class="pill" aria-live="polite" role="status">Time on site: 0:00</div>
+      <div class="about-container">
+        <img src="assets/images/profile.png" alt="Profile Image" class="profile-img" width="180" height="180" loading="lazy" decoding="async">
+        <div class="about-text">
+          <p>Hello! My name is <strong>Abbduljalil</strong>. I am passionate about web development and AI integration. This portfolio showcases my work and growth as a developer.</p>
+          <p><em>"Dream big and accomplish."</em></p>
+          <div class="remember-block">
+            <label for="remember-name">Remember your name</label>
+            <div class="remember-row">
+              <input type="text" id="remember-name" placeholder="Type your name">
+              <button type="button" id="remember-save">Save</button>
+            </div>
+            <p id="remembered-name" class="small-muted" aria-live="polite"></p>
+          </div>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Projects Section -->
-  <section id="projects" class="section">
-    <h2>Projects</h2>
-    <div class="project-controls">
-  <input id="project-search" type="search" placeholder="Search projects..." aria-label="Search projects">
-  <select id="project-filter" aria-label="Filter projects">
-    <option value="all">All</option>
-    <option value="web">Web</option>
-    <option value="testing">Testing</option>
-  </select>
-  </div>
+    <!-- Projects Section -->
+    <section id="projects" class="section">
+      <h2>Projects</h2>
+      <div class="project-controls">
+        <input id="project-search" type="search" placeholder="Search projects..." aria-label="Search projects">
+        <select id="project-filter" aria-label="Filter projects">
+          <option value="all">All</option>
+          <option value="web">Web</option>
+          <option value="testing">Testing</option>
+        </select>
+        <select id="project-sort" aria-label="Sort projects">
+          <option value="latest">Newest first</option>
+          <option value="oldest">Oldest first</option>
+          <option value="title">Title A-Z</option>
+        </select>
+      </div>
 
-  <div id="project-empty" class="hidden" role="status" aria-live="polite">No projects found.</div>
+      <div id="project-empty" class="hidden" role="status" aria-live="polite">No projects found.</div>
 
-<div class="projects-container">
-  <div class="project-card" data-tags="web">
-    <img src="assets/images/store.png" alt="Project 1">
-    <h3>Project One</h3>
-    <p>In ICS 104, I have done grocery store project by using Python.</p>
-  </div>
-  <div class="project-card" data-tags="testing">
-    <img src="assets/images/testing.jpg" alt="Project 2">
-    <h3>Project Two</h3>
-    <p>In SWE 326, I do project about black box, white box and testing coverage.</p>
-  </div>
-</div>
+      <div class="projects-container">
+        <div class="project-card" data-tags="testing" data-date="2023-11-15" data-title="Project Two">
+          <img src="assets/images/testing.jpg" alt="Testing project" width="400" height="240" loading="lazy" decoding="async">
+          <h3>Project Two</h3>
+          <p>In SWE 326, I completed a project covering black-box testing, white-box testing, and coverage.</p>
+        </div>
+        <div class="project-card" data-tags="web" data-date="2024-05-01" data-title="Project One">
+          <img src="assets/images/store.png" alt="Grocery store project" width="400" height="240" loading="lazy" decoding="async">
+          <h3>Project One</h3>
+          <p>In ICS 104, I built a grocery store application using Python.</p>
+        </div>
+      </div>
+    </section>
 
-  </section>
+    <!-- GitHub Repos Section -->
+    <section id="github" class="section">
+      <h2>Latest GitHub Repositories</h2>
+      <p class="section-lead">Live data from the GitHub API with loading and error handling.</p>
+      <form id="github-form" class="github-form">
+        <label for="github-username">GitHub username</label>
+        <div class="remember-row">
+          <input type="text" id="github-username" name="github-username" placeholder="octocat" value="octocat" required>
+          <button type="submit" id="github-load">Load repos</button>
+        </div>
+        <p class="small-muted">Saved locally so you do not have to retype it.</p>
+      </form>
+      <div id="github-status" class="card" aria-live="polite">Waiting to load repos...</div>
+      <ul id="github-repos" class="github-list"></ul>
+    </section>
 
-  <section id="fun-fact" class="section">
-  <h2>Random Dev Tip</h2>
-  <div id="fact-box" class="card" aria-live="polite">Loading…</div>
-  <button id="fact-retry" type="button" class="secondary">Try another</button>
-  </section>
+    <section id="fun-fact" class="section">
+      <h2>Random Dev Tip</h2>
+      <div id="fact-box" class="card" aria-live="polite">Loading...</div>
+      <button id="fact-retry" type="button" class="secondary">Try another</button>
+    </section>
 
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+      <h2>Contact Me</h2>
+      <form class="contact-form">
+        <label for="name">Name</label>
+        <input type="text" id="name" placeholder="Your Name" required>
 
-  <!-- Contact Section -->
-  <section id="contact" class="section">
-    <h2>Contact Me</h2>
-    <form class="contact-form">
-      <label for="name">Name</label>
-      <input type="text" id="name" placeholder="Your Name" required>
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="Your Email" required>
 
-      <label for="email">Email</label>
-      <input type="email" id="email" placeholder="Your Email" required>
-
-      <label for="message">Message</label>
-      <textarea id="message" rows="4" placeholder="Your Message"></textarea>
-      <div id="form-msg" class="form-msg" role="alert" aria-live="assertive"></div>
-      <button type="submit">Send</button>
-    </form>
-  </section>
+        <label for="message">Message</label>
+        <textarea id="message" rows="4" placeholder="Your Message"></textarea>
+        <div id="form-msg" class="form-msg" role="alert" aria-live="assertive"></div>
+        <button type="submit">Send</button>
+      </form>
+    </section>
+  </main>
 
   <!-- Footer -->
-  <footer style="background-color: lightgray;">
-    <p style="margin:0;">&copy; 2025 Abbduljalil Portfolio</p>
+  <footer class="footer">
+    <p>&copy; 2025 Abbduljalil Portfolio</p>
   </footer>
 
   <script src="js/script.js"></script>

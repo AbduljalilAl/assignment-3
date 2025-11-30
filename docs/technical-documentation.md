@@ -10,13 +10,13 @@ Personal portfolio with advanced interactivity: persisted theme, remembered visi
 ## Structure
 ```
 assignment-3/
-+-- index.html
-+-- css/styles.css
-+-- js/script.js
-+-- assets/images/
-+-- docs/
-    +-- ai-usage-report.md
-    +-- technical-documentation.md
+├── index.html
+├── css/styles.css
+├── js/script.js
+├── assets/images/
+└── docs/
+    ├── ai-usage-report.md
+    └── technical-documentation.md
 ```
 
 ## Key UI Elements

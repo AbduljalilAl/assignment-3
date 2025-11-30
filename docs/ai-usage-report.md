@@ -4,39 +4,44 @@
 **Repo:** assignment-3  
 **Date:** 25 Oct
 
-I used AI (ChatGPT) to speed up planning and coding. Below is a concise record of where AI helped; I reviewed and edited everything to fit my project and to ensure I understand it.
+This log lists how AI was used while building Assignment 3. For each case: tool, prompt summary, AI output summary, my edits, and what I learned.
 
 ---
 
-## Planning and Copy Fixes
-- **Prompt:** Outline Assignment 3 upgrades and fix corrupted UI text.
-- **AI Output:** Suggested adding GitHub feed, saved filters, timer, remembered name, and cleaner wording.
-- **My Edits:** Chose the exact behaviors/state keys and rewrote the copy.
-- **Learning:** Up-front planning avoided rework.
+## 1) Feature Planning & Copy Clean-up
+- **Tool:** ChatGPT
+- **Prompt (summary):** Help outline upgrades for Assignment 3 and fix corrupted UI copy.
+- **AI Output (summary):** Suggested feature set (GitHub feed, persisted filters, timer, remembered name) and clean wording.
+- **My Edits:** Chose specific behaviors (state keys, API endpoints, empty states) and rewrote text in my own style.
+- **Learning:** Structured feature planning before coding reduces rework.
 
-## GitHub API Section
-- **Prompt:** Fetch latest repos with loading/error/empty states.
-- **AI Output:** Fetch pattern for `users/{user}/repos` with try/catch.
-- **My Edits:** Added `per_page=5`, `sort=updated`, DOM-safe rendering, saved username, and status cards.
-- **Learning:** Safer API UI states and avoiding innerHTML for external data.
+## 2) GitHub API Fetch Pattern
+- **Tool:** ChatGPT
+- **Prompt:** Sample fetch for latest repos with loading/error/empty states.
+- **AI Output:** Fetch `https://api.github.com/users/{user}/repos` with try/catch and list rendering.
+- **My Edits:** Added `per_page=5`, `sort=updated`, DOM-safe rendering (createElement), localStorage for username, and status card states.
+- **Learning:** How to harden API UI states and avoid innerHTML for external data.
 
-## Projects Sorting + Saved State
-- **Prompt:** Sort `.project-card` by data attributes and persist filters.
-- **AI Output:** Array sort and localStorage example.
-- **My Edits:** Combined sort+filter, empty-state toggle, default hydration, gentle parsing.
-- **Learning:** Reliable DOM reordering and simple state hydration.
+## 3) Projects Sorting + Persisted Filters
+- **Tool:** ChatGPT
+- **Prompt:** Sorting `.project-card` elements by data attributes and saving filter state.
+- **AI Output:** Array sort on dataset values and storing a JSON blob in localStorage.
+- **My Edits:** Added combined applySort+applyFilters, default states, empty-state toggle, and graceful parsing.
+- **Learning:** DOM re-append patterns for stable sorting; simple state hydration pattern.
 
-## Timer + Greeting
-- **Prompt:** Simple mm:ss timer and greeting that uses a saved name.
-- **AI Output:** Interval timer and template literal greeting.
-- **My Edits:** Added aria-live, padded seconds, and integration with the remember-name block.
-- **Learning:** Small UX details improve clarity.
+## 4) Session Timer & Greeting Enhancements
+- **Tool:** ChatGPT
+- **Prompt:** Lightweight mm:ss timer and greeting that uses a saved name.
+- **AI Output:** Interval-based timer and template literal greeting.
+- **My Edits:** Added padding for seconds, live aria updates, and integration with the remember-name block.
+- **Learning:** Small UX touches (timer copy, aria-live) improve clarity.
 
-## Styling Pass
-- **Prompt:** Modern card/list styling and button polish.
-- **AI Output:** Gradient/button ideas and spacing hints.
-- **My Edits:** Fit into the existing palette, added dark-mode variables, kept reduced-motion safety.
-- **Learning:** How to adapt design ideas without breaking accessibility.
+## 5) Styling Ideas
+- **Tool:** ChatGPT
+- **Prompt:** Modern card/list styling for API results and button polish.
+- **AI Output:** Suggestions for gradients, box-shadows, and spacing.
+- **My Edits:** Normalized to existing palette, added dark-mode variables, and ensured reduced-motion safety.
+- **Learning:** Translating style ideas into a consistent theme while keeping accessibility.
 
 ## Reflection
 - **Benefits:** Faster iteration on fetch/state patterns and copy cleanup.
